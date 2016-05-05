@@ -3,7 +3,7 @@
 namespace Simettric\SimpleForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * PostReply
  *
@@ -25,6 +25,7 @@ class PostReply
      * @var string
      *
      * @ORM\Column(name="body", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $body;
 
@@ -32,12 +33,14 @@ class PostReply
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")
+     * @Assert\NotBlank(groups={"full"})
      */
     private $created;
 
 
     /**
      * @ORM\ManyToOne(targetEntity="\Simettric\SimpleForumBundle\Interfaces\UserInterface")
+     * @Assert\NotBlank(groups={"full"})
      */
     protected $user;
 

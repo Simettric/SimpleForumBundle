@@ -18,7 +18,7 @@ trait PaginationTrait {
      * @param PaginatorInterface $paginator
      * @param int $page
      * @param int $limit
-     * @return \Knp\Component\Pager\Pagination\PaginationInterface
+     * @return \Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination
      */
     function createPagination(Query $query,
                               PaginatorInterface $paginator,

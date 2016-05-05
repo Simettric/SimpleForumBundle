@@ -47,7 +47,7 @@
 
         <hr>
         <h4 id="reply">{{ "leave_a_reply"|trans }}</h4>
-        <form id="reply-form" action="{{ path("sim_forum_post_reply", {id: item.id, slug: item.slug}) }}" method="post">
+        <form id="reply-form" action="{{ path("sim_forum_post_reply", {id: item.id, slug: item.slug}) }}" method="POST">
 
             <p>{{ form_row(form.body, {label: 'form.reply.body'|trans ,attr: {class: "form-control"}}) }}</p>
             {{ form_rest(form) }}

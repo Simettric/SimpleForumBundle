@@ -51,17 +51,7 @@ class ReplyController extends Controller{
             $form->handleRequest($request);
             if($form->isValid()){
 
-                if($request->get("reply_id") &&
-                    $parent_reply = $this->getRepository()->find($request->get("reply_id"))){
-
-                    //two response levels only
-                    if($parent_reply->getReply()){
-                        $parent_reply = $parent_reply->getReply();
-                    }
-
-                    $reply->setReply($parent_reply);
-
-                }
+                
 
                 $reply->setCreated(new \DateTime());
                 $this->getDoctrine()->getManager()->persist($reply);
@@ -80,7 +70,7 @@ class ReplyController extends Controller{
 
                 $this->addFlash("success", $this->get("translator")->trans("reply_created", array(), "sim_forum"));
 
-                return $this->redirect($request->headers->get("referer"));
+                return $this->redirect($this->generateUrl("sim_forum_post_reply_view", ["id"=>$item->getPost()->getId(), "slug"=>$item->getPost()->getSlug(), "reply_id" => $item->getId()]));
 
             }
 

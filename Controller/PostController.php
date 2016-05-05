@@ -108,11 +108,20 @@ class PostController extends Controller{
 
         $form = $this->createForm(PostReplyType::class, $reply);
 
+        $pagination = $this->getReplyRepository()->createPagination(
+            $this->getReplyRepository()->getBaseQB($item)->getQuery(),
+            $this->get('knp_paginator'),
+            array("pr.id"=>"ASC"),
+            $request->get("page", 1)
+        );
+
+
         if($request->getMethod() == Request::METHOD_POST){
 
             $form->handleRequest($request);
             if($form->isValid()){
 
+                $parent_reply = null;
                 if($request->get("reply_id") &&
                     $parent_reply = $this->getReplyRepository()->find($request->get("reply_id"))){
                     //two response levels only
@@ -139,7 +148,8 @@ class PostController extends Controller{
 
                 $this->addFlash("success", $this->get("translator")->trans("reply_created",array(),  "sim_forum"));
 
-                return $this->redirect($request->headers->get("referer"));
+
+                return $this->redirect($this->generateUrl("sim_forum_post", ["id"=>$item->getId(), "slug"=>$item->getSlug(), "page"=>$pagination->getPageCount()?:1]));
 
             }
 
