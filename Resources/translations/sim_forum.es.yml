@@ -21,9 +21,13 @@ form.reply.body: Escribe tu respuesta
 reply: Responder
 reply_detail: Detalle de la respuesta
 replies_to_this_reply: Comentarios en esta respuesta
-replying_to: Respondiendo al comentario de 
+replying_to: Respondiendo al comentario de
 form.name: Nombre
 form.title: Título
 form.slug: Nombre de enlace
 form.body: Escribe tu comentario
 form.description: Descripción
+reply_created: Respuesta enviada
+post_created: Has publicado un tema
+forum_updated: Foro actualizado
+forum_created: Foro creado
