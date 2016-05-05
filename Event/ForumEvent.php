@@ -29,7 +29,7 @@ class ForumEvent extends BaseEvent{
     /**
      * @return Forum
      */
-    function getPost(){
+    function getForum(){
         return $this->forum;
     }
 
