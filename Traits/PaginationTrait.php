@@ -22,13 +22,22 @@ trait PaginationTrait {
      */
     function createPagination(Query $query,
                               PaginatorInterface $paginator,
+                              $order_by=array(),
                               $page=1,
                               $limit=10){
+
+        $options = array();
+        if(count($order_by)){
+            $fields=array_keys($order_by);
+            $options["defaultSortFieldName"]     = array_pop($fields);
+            $options["defaultSortDirection"] = array_pop($order_by);
+        }
 
         return $paginator->paginate(
             $query,
             $page,
-            $limit
+            $limit,
+            $options
         );
 
     }

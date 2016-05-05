@@ -89,6 +89,7 @@ class ReplyController extends Controller{
         $pagination = $this->getRepository()->createPagination(
             $this->getRepository()->getRepliesQB($item)->getQuery(),
             $this->get('knp_paginator'),
+            array("rr.id"=>"ASC"),
             $request->get("page", 1)
         );
 

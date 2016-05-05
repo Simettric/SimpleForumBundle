@@ -38,6 +38,7 @@ class ForumController extends Controller
         $posts_pagination = $this->getPostRepository()->createPagination(
             $this->getPostRepository()->getBaseQB($item)->getQuery(),
             $this->get('knp_paginator'),
+            array("p.updated"=>"DESC"),
             $request->get("page", 1)
         );
 

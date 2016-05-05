@@ -149,6 +149,7 @@ class PostController extends Controller{
         $pagination = $this->getReplyRepository()->createPagination(
             $this->getReplyRepository()->getBaseQB($item)->getQuery(),
             $this->get('knp_paginator'),
+            array("pr.id"=>"ASC"),
             $request->get("page", 1)
         );
 
