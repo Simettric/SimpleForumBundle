@@ -9,6 +9,7 @@ namespace Simettric\SimpleForumBundle\Controller;
 
 
 use Simettric\SimpleForumBundle\Entity\PostReply;
+use Simettric\SimpleForumBundle\Event\PostReplyEvent;
 use Simettric\SimpleForumBundle\Form\PostReplyType;
 use Simettric\SimpleForumBundle\Repository\PostReplyRepository;
 use Simettric\SimpleForumBundle\Repository\PostRepository;
@@ -73,6 +74,9 @@ class ReplyController extends Controller{
                 $this->getDoctrine()->getManager()->persist($item->getPost()->getForum());
 
                 $this->getDoctrine()->getManager()->flush();
+
+                $this->get("event_dispatcher")->dispatch(PostReplyEvent::TYPE_CREATED, new PostReplyEvent($reply));
+
 
                 $this->addFlash("success", $this->get("translator")->trans("reply_created"));
 

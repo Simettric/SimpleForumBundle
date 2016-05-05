@@ -3,6 +3,7 @@
 namespace Simettric\SimpleForumBundle\Controller;
 
 use Simettric\SimpleForumBundle\Entity\Forum;
+use Simettric\SimpleForumBundle\Event\ForumEvent;
 use Simettric\SimpleForumBundle\Form\ForumType;
 use Simettric\SimpleForumBundle\Repository\ForumRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -35,6 +36,9 @@ class AdminForumController extends Controller
 
                 $this->getDoctrine()->getManager()->persist($item);
                 $this->getDoctrine()->getManager()->flush();
+
+                $this->get("event_dispatcher")->dispatch(ForumEvent::TYPE_CREATED, new ForumEvent($item));
+
 
                 $this->addFlash("success", $this->get("translator")->trans("forum_created"));
 
@@ -78,6 +82,8 @@ class AdminForumController extends Controller
 
                 $this->getDoctrine()->getManager()->persist($item);
                 $this->getDoctrine()->getManager()->flush();
+
+                $this->get("event_dispatcher")->dispatch(ForumEvent::TYPE_UPDATED, new ForumEvent($item));
 
                 $this->addFlash("success", $this->get("translator")->trans("forum_created"));
 
