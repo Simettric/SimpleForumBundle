@@ -81,6 +81,13 @@ class Post
     private $replies;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="reply_count", type="integer", nullable=true)
+     */
+    private $replyCount;
+
+    /**
      * Get id
      *
      * @return int
@@ -321,5 +328,29 @@ class Post
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set replyCount
+     *
+     * @param integer $replyCount
+     *
+     * @return Post
+     */
+    public function setReplyCount($replyCount)
+    {
+        $this->replyCount = $replyCount;
+
+        return $this;
+    }
+
+    /**
+     * Get replyCount
+     *
+     * @return integer
+     */
+    public function getReplyCount()
+    {
+        return $this->replyCount;
     }
 }

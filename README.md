@@ -25,13 +25,29 @@ La fecha prevista para disponer de una primera versión en packagist es el 26/05
 
 #### Configuración
 
-En el archivo app/config/config.yml
+Implementa la interfaz SimpleForumBundle\Interfaces\UserInterface en tu entidad como puedes ver en el siguiente ejemplo
+
+    <?php
+    
+    namespace AppBundle\Entity;
+    
+    use Simettric\SimpleForumBundle\Interfaces\UserInterface as ForumUserInterface;
+    use Doctrine\ORM\Mapping as ORM;
+    
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="user")
+     */
+    class User implements ForumUserInterface {
+
+Y en el archivo app/config/config.yml (cambiando la clase AppBundle\Entity\User por la tuya, en el caso de no encontrarse en AppBundle)
 
     # Doctrine Configuration
     doctrine:
         orm:
             resolve_target_entities:
-                Simettric\SimpleForumBundle\Interfaces\UserInterface: %your_user_entity_class%
+                Simettric\SimpleForumBundle\Interfaces\UserInterface: AppBundle\Entity\User
+                
                 
 
 Añadir rutas en app/config/routing.yml
@@ -68,4 +84,33 @@ Configurar template de knp_paginator (Solo si usas los templates base y si no se
             pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
 
 
+#### Extender y personalizar
 
+##### Entidad usuario
+
+Este bundle utiliza la entidad de usuario que definas en tu aplicación. Simplemente debe implementar la interfaz SimpleForumBundle\Interfaces\UserInterface como puedes ver en el siguiente ejemplo
+
+    <?php
+    
+    namespace AppBundle\Entity;
+    
+    use Simettric\SimpleForumBundle\Interfaces\UserInterface as ForumUserInterface;
+    use Doctrine\ORM\Mapping as ORM;
+    
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="user")
+     */
+    class User implements ForumUserInterface
+
+##### Templates
+
+Los templates se pueden sobreescribir totalmente a nivel de aplicación.
+Puedes consultar cómo se puede hacer esto [en este apartado de la documentación de Symfony](http://symfony.com/doc/current/book/templating.html#overriding-bundle-templates)
+
+##### Eventos
+
+Cada vez que se crea o actualiza un Foro, Post o Respuesta, se emite un evento. 
+Puedes suscribirte a estos eventos personalizando y extendiendo la funcionalidad de tu sistema de foros sin modificar el código fuente del bundle.
+
+Puedes ver los eventos disponibles en el directorio /Event

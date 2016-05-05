@@ -43,7 +43,7 @@
                     <strong>{{ item.user.username }}</strong>
                     <p><small>{{ item.created|date("d-m-Y H:i:s") }}</small></p>
                 </td>
-                <td>0</td>
+                <td>{{ item.replyCount|number_format }}</td>
                 <td>
                     {% if item.lastReply %}
                     <strong>{{ item.lastReply.user.username }}</strong>

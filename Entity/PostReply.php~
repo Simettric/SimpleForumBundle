@@ -56,7 +56,7 @@ class PostReply
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="PostReply", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="PostReply", mappedBy="reply")
      */
     private $replies;
 

@@ -66,6 +66,20 @@ class Forum
 
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="post_count", type="integer", nullable=true)
+     */
+    private $postCount;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="reply_count", type="integer", nullable=true)
+     */
+    private $replyCount;
+
+    /**
      * Get id
      *
      * @return int
@@ -234,5 +248,53 @@ class Forum
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Set postCount
+     *
+     * @param integer $postCount
+     *
+     * @return Forum
+     */
+    public function setPostCount($postCount)
+    {
+        $this->postCount = $postCount;
+
+        return $this;
+    }
+
+    /**
+     * Get postCount
+     *
+     * @return integer
+     */
+    public function getPostCount()
+    {
+        return $this->postCount;
+    }
+
+    /**
+     * Set replyCount
+     *
+     * @param integer $replyCount
+     *
+     * @return Forum
+     */
+    public function setReplyCount($replyCount)
+    {
+        $this->replyCount = $replyCount;
+
+        return $this;
+    }
+
+    /**
+     * Get replyCount
+     *
+     * @return integer
+     */
+    public function getReplyCount()
+    {
+        return $this->replyCount;
     }
 }

@@ -66,6 +66,20 @@ class Forum
 
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="post_count", type="integer", nullable=true)
+     */
+    private $postCount;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="reply_count", type="integer", nullable=true)
+     */
+    private $replyCount;
+
+    /**
      * Get id
      *
      * @return int

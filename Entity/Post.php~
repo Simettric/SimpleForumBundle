@@ -81,6 +81,13 @@ class Post
     private $replies;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="reply_count", type="integer", nullable=true)
+     */
+    private $replyCount;
+
+    /**
      * Get id
      *
      * @return int
@@ -297,5 +304,29 @@ class Post
     public function getLastReply()
     {
         return $this->lastReply;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return Post
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 }

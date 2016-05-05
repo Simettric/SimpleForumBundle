@@ -40,8 +40,8 @@
                     <p>{{ item.description|nl2br }}</p>
                     <a href="{{ path("sim_forum_edit", {id: item.id}) }}">{{ "edit_forum"|trans }}</a>
                 </td>
-                <td>0</td>
-                <td>0</td>
+                <td>{{ item.postCount|number_format }}</td>
+                <td>{{ item.replyCount|number_format }}</td>
                 <td>
                     <p>{{ item.updated|date("d-m-Y H:i:s") }}</p>
                 </td>

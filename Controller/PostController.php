@@ -50,6 +50,7 @@ class PostController extends Controller{
             if($form->isValid()){
 
                 $item->setCreated(new \DateTime());
+                $item->setUpdated(new \DateTime());
 
                 $this->getDoctrine()->getManager()->persist($item);
                 $this->getDoctrine()->getManager()->flush();
