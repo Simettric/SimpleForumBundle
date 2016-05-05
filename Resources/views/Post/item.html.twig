@@ -1,0 +1,30 @@
+<article class="forum_post" id="post-{{ item.id }}">
+
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <h5>{{ item.user.username }}</h5>
+                    <p><small>{{ item.created|date("d-m-Y H:i") }}</small></p>
+                </div>
+
+                <div class="col-sm-9">
+                    <h3>
+                        {{ item.title|capitalize }}
+                    </h3>
+                    <p>{{ item.body|nl2br }}</p>
+                    <p><a href="#reply">{{ "reply"|trans }}</a></p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</article>

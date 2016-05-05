@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <hr>
+
+        <ol class="breadcrumb">
+            <li><a href="{{ path("sim_forum_index") }}">{{ "forums_index_link"|trans }}</a></li>
+            <li><a href="{{ path("sim_forum_detail", {slug: item.post.forum.slug}) }}">{{ item.post.forum.name }}</a></li>
+            <li><a href="{{ path("sim_forum_post", {slug: item.post.slug, id: item.post.id}) }}">{{ item.post.title }}</a></li>
+            <li class="active">{{ "reply_detail"|trans }}</li>
+        </ol>
+
+
+
+
+            <hr>
+            {% include 'SimettricSimpleForumBundle:Reply:list-item.html.twig' with {reply: item} %}
+            <hr>
+            <h4>{{ "replies_to_this_reply"|trans }}</h4>
+
+
+
+
+
+
+        {% for reply in pagination %}
+
+            <hr>
+            {% include 'SimettricSimpleForumBundle:Reply:list-item.html.twig' with {reply: reply} %}
+
+
+        {% else %}
+
+            <p class="alert alert-info">{{ "there_is_no_replies"|trans }}</p>
+
+        {% endfor %}
+
+        <hr>
+        {{ knp_pagination_render(pagination) }}
+
+        <hr>
+        <h4 id="reply">{{ "leave_a_reply"|trans }}</h4>
+        <form id="reply-form" action="{{ path("sim_forum_post_reply_to_reply", {reply_id: item.id, id: item.post.id, slug: item.post.slug}) }}" method="post">
+
+            <p>{{ form_row(form.body, {label: 'form.reply.body'|trans ,attr: {class: "form-control"}}) }}</p>
+            {{ form_rest(form) }}
+            <button class="btn btn-primary">{{ "reply"|trans }}</button>
+
+        </form>
+
+
+        <hr>
+
+
+
+
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+
+    <script type="text/javascript" src="{{ asset("bundles/simettricsimpleforum/js/post.js") }}"></script>
+
+
+{% endblock %}

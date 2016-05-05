@@ -1,6 +1,8 @@
 <?php
 
 namespace Simettric\SimpleForumBundle\Repository;
+use Simettric\SimpleForumBundle\Entity\Forum;
+use Simettric\SimpleForumBundle\Traits\PaginationTrait;
 
 /**
  * PostRepository
@@ -10,4 +12,19 @@ namespace Simettric\SimpleForumBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    use PaginationTrait;
+
+    const DEFAULT_LIST_LIMIT = 10;
+
+    function getBaseQB(Forum $forum){
+
+        return $this->createQueryBuilder("p")
+            ->innerJoin("p.forum", "f")
+            ->where("f.id = :forum_id")
+            ->setParameter("forum_id", $forum->getId());
+
+    }
+
+
 }

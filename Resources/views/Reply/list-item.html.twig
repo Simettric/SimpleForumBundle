@@ -1,0 +1,37 @@
+<article class="forum_post" id="reply-{{ reply.id }}">
+
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <strong>{{ reply.user.username }}</strong>
+                    <p><a href="{{ path("sim_forum_post_reply_view", {reply_id: item.id, id: reply.post.id, slug: reply.post.slug}) }}"><small>{{ reply.created|date("d-m-Y H:i") }}</small></a></p>
+                </div>
+
+                <div class="col-sm-9">
+
+                    {% if reply.reply %}
+
+                        <div class="well"><i>{{ "replying_to"|trans }} {{ reply.reply.user.username }}:</i> {{ reply.reply.body| truncate(15) }}</div>
+
+                    {% endif %}
+
+                    <p>{{ reply.body|nl2br }}</p>
+                    <p>
+                        <a class="reply-to-reply" data-reply-url="{{ path("sim_forum_post_reply_to_reply", {reply_id: reply.reply? reply.reply.id : reply.id, id: reply.post.id, slug: reply.post.slug}) }}"
+                           href="#reply">{{ "reply"|trans }}</a>
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</article>

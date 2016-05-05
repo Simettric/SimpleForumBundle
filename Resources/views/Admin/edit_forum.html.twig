@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <hr>
+        <ol class="breadcrumb">
+            <li><a href="{{ path("sim_forum_index") }}">{{ "forums_index_link"|trans }}</a></li>
+            <li class="active">{{ "edit_forum"|trans }}</li>
+        </ol>
+
+
+        <h3>
+            {{ "edit_forum"|trans }}
+        </h3>
+
+        <hr>
+
+        <form action="{{ path("sim_forum_edit", {id: item.id}) }}"
+              method="post">
+
+            {% include 'SimettricSimpleForumBundle:Admin:forum_fields.html.twig' with {form: form} %}
+
+            <hr>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">{{ "edit_forum"|trans }}</button>
+            </div>
+
+        </form>
+
+        <hr>
+    </div>
+
+
+{% endblock %}

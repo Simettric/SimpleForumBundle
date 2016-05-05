@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <hr>
+        <ol class="breadcrumb">
+            <li><a href="{{ path("sim_forum_index") }}">{{ "forums_index_link"|trans }}</a></li>
+            <li><a href="{{ path("sim_forum_detail", {slug: item.forum.slug}) }}">{{ item.forum.name }}</a></li>
+            <li class="active">{{ "create_post"|trans }}</li>
+        </ol>
+
+
+        <h3>
+            {{ "create_post_in_forum"|trans({"%forum%": forum.name|capitalize }) }}
+        </h3>
+
+        <hr>
+
+        <form action="{{ path("sim_forum_post_create", {forum_id: forum.id}) }}"
+              method="post">
+
+            <div class="form-group">
+                {{ form_row(form.title, {attr: {class: "form-control"}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.slug, {attr: {class: "form-control"}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.body, {attr: {class: "form-control"}}) }}
+            </div>
+            {{ form_rest(form) }}
+
+            <hr>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">{{ "create_post"|trans }}</button>
+            </div>
+
+        </form>
+
+        <hr>
+    </div>
+
+
+{% endblock %}

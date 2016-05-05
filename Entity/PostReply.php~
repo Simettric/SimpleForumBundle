@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PostReply
  *
- * @ORM\Table(name="post_reply")
+ * @ORM\Table(name="forum_post_reply")
  * @ORM\Entity(repositoryClass="Simettric\SimpleForumBundle\Repository\PostReplyRepository")
  */
 class PostReply
@@ -40,6 +40,26 @@ class PostReply
      * @ORM\ManyToOne(targetEntity="\Simettric\SimpleForumBundle\Interfaces\UserInterface")
      */
     protected $user;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="replies")
+     */
+    protected $post;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PostReply", inversedBy="replies")
+     */
+    protected $reply;
+
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="PostReply", mappedBy="parent")
+     */
+    private $replies;
+
 
 
     /**
@@ -99,5 +119,117 @@ class PostReply
     {
         return $this->created;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \Simettric\SimpleForumBundle\Interfaces\UserInterface $user
+     *
+     * @return PostReply
+     */
+    public function setUser(\Simettric\SimpleForumBundle\Interfaces\UserInterface $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Simettric\SimpleForumBundle\Interfaces\UserInterface
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->replies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set post
+     *
+     * @param \Simettric\SimpleForumBundle\Entity\Post $post
+     *
+     * @return PostReply
+     */
+    public function setPost(\Simettric\SimpleForumBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Simettric\SimpleForumBundle\Entity\Post
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * Set reply
+     *
+     * @param \Simettric\SimpleForumBundle\Entity\PostReply $reply
+     *
+     * @return PostReply
+     */
+    public function setReply(\Simettric\SimpleForumBundle\Entity\PostReply $reply = null)
+    {
+        $this->reply = $reply;
+
+        return $this;
+    }
+
+    /**
+     * Get reply
+     *
+     * @return \Simettric\SimpleForumBundle\Entity\PostReply
+     */
+    public function getReply()
+    {
+        return $this->reply;
+    }
+
+    /**
+     * Add reply
+     *
+     * @param \Simettric\SimpleForumBundle\Entity\PostReply $reply
+     *
+     * @return PostReply
+     */
+    public function addReply(\Simettric\SimpleForumBundle\Entity\PostReply $reply)
+    {
+        $this->replies[] = $reply;
+
+        return $this;
+    }
+
+    /**
+     * Remove reply
+     *
+     * @param \Simettric\SimpleForumBundle\Entity\PostReply $reply
+     */
+    public function removeReply(\Simettric\SimpleForumBundle\Entity\PostReply $reply)
+    {
+        $this->replies->removeElement($reply);
+    }
+
+    /**
+     * Get replies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReplies()
+    {
+        return $this->replies;
+    }
+}

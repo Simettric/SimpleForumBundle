@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Post
  *
- * @ORM\Table(name="post")
+ * @ORM\Table(name="forum_post")
  * @ORM\Entity(repositoryClass="Simettric\SimpleForumBundle\Repository\PostRepository")
  */
 class Post
@@ -49,13 +49,36 @@ class Post
      */
     private $created;
 
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime")
+     */
+    private $updated;
 
     /**
      * @ORM\ManyToOne(targetEntity="\Simettric\SimpleForumBundle\Interfaces\UserInterface")
      */
     protected $user;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Forum", inversedBy="posts")
+     */
+    protected $forum;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="PostReply")
+     */
+    protected $lastReply;
+
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="PostReply", mappedBy="post")
+     */
+    private $replies;
 
     /**
      * Get id
@@ -185,5 +208,118 @@ class Post
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->replies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set forum
+     *
+     * @param \Simettric\SimpleForumBundle\Entity\Forum $forum
+     *
+     * @return Post
+     */
+    public function setForum(\Simettric\SimpleForumBundle\Entity\Forum $forum = null)
+    {
+        $this->forum = $forum;
+
+        return $this;
+    }
+
+    /**
+     * Get forum
+     *
+     * @return \Simettric\SimpleForumBundle\Entity\Forum
+     */
+    public function getForum()
+    {
+        return $this->forum;
+    }
+
+    /**
+     * Add reply
+     *
+     * @param \Simettric\SimpleForumBundle\Entity\PostReply $reply
+     *
+     * @return Post
+     */
+    public function addReply(\Simettric\SimpleForumBundle\Entity\PostReply $reply)
+    {
+        $this->replies[] = $reply;
+
+        return $this;
+    }
+
+    /**
+     * Remove reply
+     *
+     * @param \Simettric\SimpleForumBundle\Entity\PostReply $reply
+     */
+    public function removeReply(\Simettric\SimpleForumBundle\Entity\PostReply $reply)
+    {
+        $this->replies->removeElement($reply);
+    }
+
+    /**
+     * Get replies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReplies()
+    {
+        return $this->replies;
+    }
+
+    /**
+     * Set lastReply
+     *
+     * @param \Simettric\SimpleForumBundle\Entity\PostReply $lastReply
+     *
+     * @return Post
+     */
+    public function setLastReply(\Simettric\SimpleForumBundle\Entity\PostReply $lastReply = null)
+    {
+        $this->lastReply = $lastReply;
+
+        return $this;
+    }
+
+    /**
+     * Get lastReply
+     *
+     * @return \Simettric\SimpleForumBundle\Entity\PostReply
+     */
+    public function getLastReply()
+    {
+        return $this->lastReply;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return Post
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 }
