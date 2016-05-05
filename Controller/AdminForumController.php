@@ -33,14 +33,14 @@ class AdminForumController extends Controller
 
                 $item->setCreated(new \DateTime());
                 $item->setUpdated(new \DateTime());
-
+                $item->setSlug($this->get("sim_forum.slugify")->slugify($item->getName()));
                 $this->getDoctrine()->getManager()->persist($item);
                 $this->getDoctrine()->getManager()->flush();
 
                 $this->get("event_dispatcher")->dispatch(ForumEvent::TYPE_CREATED, new ForumEvent($item));
 
 
-                $this->addFlash("success", $this->get("translator")->trans("forum_created", "sim_forum"));
+                $this->addFlash("success", $this->get("translator")->trans("forum_created",array(),  "sim_forum"));
 
                 return $this->redirect(
                     $this->generateUrl("sim_forum_index")
@@ -85,7 +85,7 @@ class AdminForumController extends Controller
 
                 $this->get("event_dispatcher")->dispatch(ForumEvent::TYPE_UPDATED, new ForumEvent($item));
 
-                $this->addFlash("success", $this->get("translator")->trans("forum_updated", "sim_forum"));
+                $this->addFlash("success", $this->get("translator")->trans("forum_updated",array(),  "sim_forum"));
 
                 return $this->redirect(
                     $this->generateUrl("sim_forum_index")

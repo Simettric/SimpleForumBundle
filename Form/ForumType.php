@@ -17,7 +17,6 @@ class ForumType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('slug')
             ->add('description', TextareaType::class, array("required"=>false))
         ;
     }

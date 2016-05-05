@@ -50,6 +50,7 @@ class PostController extends Controller{
             if($form->isValid()){
 
                 $item->setCreated(new \DateTime());
+                $item->setSlug($this->get("sim_forum.slugify")->slugify($item->getTitle()));
                 $item->setUpdated(new \DateTime());
 
 
@@ -65,7 +66,7 @@ class PostController extends Controller{
                 $this->get("event_dispatcher")->dispatch(PostEvent::TYPE_CREATED, new PostEvent($item));
 
 
-                $this->addFlash("success", $this->get("translator")->trans("post_created", "sim_forum"));
+                $this->addFlash("success", $this->get("translator")->trans("post_created", array(), "sim_forum"));
 
                 return $this->redirect(
                             $this->generateUrl("sim_forum_post",
@@ -136,7 +137,7 @@ class PostController extends Controller{
 
                 $this->get("event_dispatcher")->dispatch(PostReplyEvent::TYPE_CREATED, new PostReplyEvent($reply));
 
-                $this->addFlash("success", $this->get("translator")->trans("reply_created", "sim_forum"));
+                $this->addFlash("success", $this->get("translator")->trans("reply_created",array(),  "sim_forum"));
 
                 return $this->redirect($request->headers->get("referer"));
 

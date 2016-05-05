@@ -78,7 +78,7 @@ class ReplyController extends Controller{
                 $this->get("event_dispatcher")->dispatch(PostReplyEvent::TYPE_CREATED, new PostReplyEvent($reply));
 
 
-                $this->addFlash("success", $this->get("translator")->trans("reply_created", "sim_forum"));
+                $this->addFlash("success", $this->get("translator")->trans("reply_created", array(), "sim_forum"));
 
                 return $this->redirect($request->headers->get("referer"));
 

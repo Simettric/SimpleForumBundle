@@ -13,6 +13,7 @@ Esto es completamente opcional, ya que estos templates se pueden sobreescribir a
 
 * PHP5.6 o superior
 * KnpPaginatorBundle
+* cocur/slugify
 * Twig_Extensions_Extension_Text (para los templates base)
 * JQuery y Bootstrap (para los templates base)
 
