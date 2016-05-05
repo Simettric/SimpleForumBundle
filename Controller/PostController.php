@@ -52,7 +52,14 @@ class PostController extends Controller{
                 $item->setCreated(new \DateTime());
                 $item->setUpdated(new \DateTime());
 
+
+
                 $this->getDoctrine()->getManager()->persist($item);
+
+                $item->getForum()->setUpdated(new \DateTime());
+
+                $this->getDoctrine()->getManager()->persist($item->getForum());
+
                 $this->getDoctrine()->getManager()->flush();
 
                 $this->get("event_dispatcher")->dispatch(PostEvent::TYPE_CREATED, new PostEvent($item));

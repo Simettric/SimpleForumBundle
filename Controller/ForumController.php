@@ -16,7 +16,7 @@ class ForumController extends Controller
     public function indexAction()
     {
 
-        $items = $this->getRepository()->findAll();
+        $items = $this->getRepository()->findBy(array(), array("updated"=>"DESC"));
 
         return $this->render('SimettricSimpleForumBundle:Forum:index.html.twig', array(
             "items" => $items
