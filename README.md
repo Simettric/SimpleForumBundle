@@ -34,6 +34,25 @@ En el archivo app/config/config.yml
                 Simettric\SimpleForumBundle\Interfaces\UserInterface: %your_user_entity_class%
                 
 
+Añadir rutas en app/config/routing.yml
+
+    simettric_simple_forum:
+        resource: "@SimettricSimpleForumBundle/Controller/"
+        type:     annotation
+        prefix:   /forums
+
+
+En el archive app/config/security.yml, gestionar la herencia de roles para ROLE_FORUM_ADMIN y su acceso a las operaciones de administración
+
+    security:
+        role_hierarchy:
+            ROLE_FORUM_ADMIN: [ROLE_USER]
+            ROLE_ADMIN:       [ROLE_USER, ROLE_FORUM_ADMIN]
+            
+        access_control:
+            - { path: ^/admin-forum, role: ROLE_FORUM_ADMIN }
+
+
 Añadir la extensión de texto de twig (Solo si usas los templates base y si no se ha añadido anteriormente) en el archivo app/config/services.yml
 
     services:
