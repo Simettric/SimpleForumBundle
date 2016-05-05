@@ -27,7 +27,8 @@ class PostReplyType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Simettric\SimpleForumBundle\Entity\PostReply'
+            'data_class' => 'Simettric\SimpleForumBundle\Entity\PostReply',
+            'translation_domain' => 'sim_forum'
         ));
     }
 }

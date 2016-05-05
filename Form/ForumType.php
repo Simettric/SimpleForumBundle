@@ -28,7 +28,8 @@ class ForumType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Simettric\SimpleForumBundle\Entity\Forum'
+            'data_class' => 'Simettric\SimpleForumBundle\Entity\Forum',
+            'translation_domain' => 'sim_forum'
         ));
     }
 }

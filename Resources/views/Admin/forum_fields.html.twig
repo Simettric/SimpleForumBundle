@@ -1,10 +1,11 @@
+{% trans_default_domain "sim_forum" %}
 <div class="form-group">
-    {{ form_row(form.name, {attr: {class: "form-control"}}) }}
+    {{ form_row(form.name, {label: "form.name",attr: {class: "form-control"}}) }}
 </div>
 <div class="form-group">
-    {{ form_row(form.slug, {attr: {class: "form-control"}}) }}
+    {{ form_row(form.slug, {label: "form.slug",attr: {class: "form-control"}}) }}
 </div>
 <div class="form-group">
-    {{ form_row(form.description, {attr: {class: "form-control"}}) }}
+    {{ form_row(form.description, {label: "form.description", attr: {class: "form-control"}}) }}
 </div>
 {{ form_rest(form) }}
