@@ -1,9 +1,16 @@
 services:
+
+    sim_forum.search_repository:
+        class: Simettric\SimpleForumBundle\Repository\DoctrineSearchRepository
+        arguments: ["@doctrine.orm.entity_manager"]
+
     sim_forum.stats_subscriber:
         class: Simettric\SimpleForumBundle\Event\Subscriber\StatsEventSubscriber
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
              - { name: kernel.event_subscriber }
+
+
     sim_forum.slugify:
         class: Cocur\Slugify\Slugify
 

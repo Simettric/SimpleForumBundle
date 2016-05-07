@@ -5,15 +5,25 @@
     <div class="container">
 
 
+        <hr>
 
-        <h3>
-            {{ "forum_index_title"|trans }}
-            {% if  is_granted("ROLE_FORUM_ADMIN") %}
-            <a href="{{ path("sim_forum_create") }}" class="btn btn-primary pull-right">{{ "create_forum"|trans }}</a>
+        <div class="row">
+
+            <div class="col-sm-3">
+                <form action="{{ path("sim_forum_search") }}">
+                    <input placeholder="{{ "search"|trans }}" name="search" type="search" class="form-control">
+                </form>
+            </div>
+            <div class="col-sm-3 col-sm-offset-6">
+                {% if  is_granted("ROLE_FORUM_ADMIN") %}
+                    <a href="{{ path("sim_forum_create") }}" class="btn btn-block btn-primary pull-right">{{ "create_forum"|trans }}</a>
 
 
-            {% endif %}
-        </h3>
+                {% endif %}
+            </div>
+        </div>
+
+        <h4>{{ "forum_index_title"|trans }}</h4>
 
 
         <hr>

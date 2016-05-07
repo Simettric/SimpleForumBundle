@@ -24,6 +24,46 @@ TODO, actualmente el bundle se encuentra en desarrollo.
 
 La fecha prevista para disponer de una primera versión en packagist es el 26/05/2016 
 
+#### Funcionalidad disponible
+
+* Crear, Editar y Eliminar foros por usuarios con rol de ROLE_FORUM_ADMIN
+
+* Crear posts en foros
+
+* Enviar respuestas al post
+
+* Enviar respuestas a otra respuesta (limitado a dos niveles) **pendiente de refactorizar**
+
+* Detalle de respuesta, mostrando las respuestas a la misma
+
+
+
+##### TODO (En desarrollo)
+
+* Registrar IP de los usuarios
+
+* Posibilidad de editar posts por parte de los usuarios.
+
+* Citar respuesta.
+
+* Filtros de Twig para auto enlazar links, a otros usuarios y otras respuestas.
+
+* Editor WYSIWYG en templates base
+
+* Suscribirse\Cancelar suscripción a un post para recibir notificaciones por correo cuando se publique una respuesta
+
+* EventSubscriber para envío de emails con sus correspondientes templates en twig
+
+* Sistema básico de moderación de foros mediante estados de post: activo, baneado, eliminado
+
+* ROLE_FORUM_MODERATOR y asignar administradores para moderar un foro
+
+* El usuario ROLE_FORUM_ADMIN, ROLE_SUPER_ADMIN y ROLE_ADMIN pueden eliminar definitivamente posts y sus replies asociadas
+
+* Posibilidad de crear foros privados
+
+* Mejorar el permalink de respuesta, llevando al usuario a la página concreta donde se encuentra con un anchor en lugar de
+
 #### Configuración
 
 Implementa la interfaz SimpleForumBundle\Interfaces\UserInterface en tu entidad como puedes ver en el siguiente ejemplo
@@ -87,22 +127,7 @@ Configurar template de knp_paginator (Solo si usas los templates base y si no se
 
 #### Extender y personalizar
 
-##### Entidad usuario
 
-Este bundle utiliza la entidad de usuario que definas en tu aplicación. Simplemente debe implementar la interfaz SimpleForumBundle\Interfaces\UserInterface como puedes ver en el siguiente ejemplo
-
-    <?php
-    
-    namespace AppBundle\Entity;
-    
-    use Simettric\SimpleForumBundle\Interfaces\UserInterface as ForumUserInterface;
-    use Doctrine\ORM\Mapping as ORM;
-    
-    /**
-     * @ORM\Entity
-     * @ORM\Table(name="user")
-     */
-    class User implements ForumUserInterface
 
 ##### Templates
 

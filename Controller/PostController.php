@@ -8,6 +8,8 @@
 namespace Simettric\SimpleForumBundle\Controller;
 
 
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
+use Knp\Component\Pager\Event\PaginationEvent;
 use Simettric\SimpleForumBundle\Entity\Post;
 use Simettric\SimpleForumBundle\Entity\PostReply;
 use Simettric\SimpleForumBundle\Event\PostEvent;
@@ -25,6 +27,40 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * @Route("/discussion")
  */
 class PostController extends Controller{
+
+
+    /**
+     * @Route("/search", name="sim_forum_search")
+     */
+    public function searchAction(Request $request){
+
+
+        $event = new PaginationEvent();
+        $this->get("event_dispatcher")->dispatch("knp_pager.pagination", $event);
+
+        /**
+         * @var $pagination SlidingPagination
+         */
+        $pagination = $event->getPagination();
+
+        /**
+         * @var $searchRepository \Simettric\SimpleForumBundle\Interfaces\SearchRepositoryInterface
+         */
+        $searchRepository = $this->get("sim_forum.search_repository");
+        $searchRepository->search($request->get("search"), $request->get("page",1));
+
+        $pagination->setCurrentPageNumber($searchRepository->getPage());
+        $pagination->setItemNumberPerPage($searchRepository->getLimit());
+        $pagination->setItems($searchRepository->getResults());
+        $pagination->setTotalItemCount($searchRepository->getTotalResults());
+        $pagination->setPaginatorOptions(array());
+        $pagination->setCustomParameters(array());
+
+
+        return $this->render('SimettricSimpleForumBundle:Post:search.html.twig', array(
+            "pagination" => $pagination
+        ));
+    }
 
     /**
      * @Route("/create-in-{forum_id}", name="sim_forum_post_create")

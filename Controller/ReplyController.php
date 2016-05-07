@@ -51,7 +51,7 @@ class ReplyController extends Controller{
             $form->handleRequest($request);
             if($form->isValid()){
 
-                
+
 
                 $reply->setCreated(new \DateTime());
                 $this->getDoctrine()->getManager()->persist($reply);
