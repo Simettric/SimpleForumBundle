@@ -5,7 +5,7 @@ El objetivo de este bundle es el de proveer la funcionalidad básica para crear 
 
 Lejos de pretender abarcar la máxima funcionalidad posible, la filosofía de este proyecto es la de mantener siempre la máxima simpleza y flexibilidad para que otros desarrolladores puedan trabajar sobre el mismo sin una gran curva de aprendizaje.
 
-Por defecto, el bundle funciona con unos templates que requieren disponer de un layout en app/Resources/views/base.html.twig implementando bootstrap3 junto a los bloques "body" y "javascripts" en el.
+Por defecto, el bundle funciona con unos templates que requieren disponer de un layout en app/Resources/views/base.html.twig implementando bootstrap3 junto a los bloques "body" y "javascripts" en él.
 Esto es completamente opcional, ya que estos templates se pueden sobreescribir a nivel de app.
 
 
@@ -148,7 +148,7 @@ Para crear un repositorio propio el primer paso sería implementar la interfaz S
         private $searchService;
         
         
-        function __construct(EntityManager $em, RedisSearch $searchService){
+        function __construct(EntityManager $em, ElasticSearchService $searchService){
         
             $this->em = $em;
             
