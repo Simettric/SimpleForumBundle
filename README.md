@@ -131,3 +131,52 @@ Cada vez que se crea o actualiza un Foro, Post o Respuesta, se emite un evento.
 Puedes suscribirte a estos eventos personalizando y extendiendo la funcionalidad de tu sistema de foros sin modificar el código fuente del bundle.
 
 Puedes ver los eventos disponibles en el directorio /Event
+
+##### Búsqueda
+
+Por defecto, este bundle viene con un repositorio de búsqueda de posts basado en Doctrine. 
+
+Para crear un repositorio propio el primer paso sería implementar la interfaz SearchRepositoryInterface como se muestra en el siguiente ejemplo
+
+    
+    class ElasticSearchRepository implements \Simettric\SimpleForumBundle\Repository\SearchRepositoryInterface{
+    
+        private $em;
+        
+        private $searchService;
+        
+        
+        function __construct(EntityManager $em, RedisSearch $searchService){
+        
+            $this->em = $em;
+            
+            $this->searchService = $searchService;
+        }
+        
+        ...
+        
+        function search($search_pattern, $page=1, $limit=10){
+        
+            $ids = $this->searchService->search($search_pattern, $page, $limit);
+            
+            $this->results = $this->em->createQueryBuilder()
+                                  ->select("p")
+                                  ->form("SimettricSimpleForumBundle:Post", "p")
+                                  ->where("p.id IN :ids")
+                                  ->setParameter("ids", $ids)
+                                  ->getQuery()
+                                  ->getResult();
+                                  
+            return $this;
+            
+        }
+       
+    }
+    
+Por último, se sobreescribiría el servicio @sim_forum.search_repository en el archivo app/config/services.yml
+
+    sim_forum.search_repository:
+        class: AppBundle\SimpleForumBundle\Repository\ElasticSearchRepository
+        arguments: ["@doctrine.orm.entity_manager", "@your_elastic_search_service"]
+        
+        
