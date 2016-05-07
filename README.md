@@ -138,8 +138,10 @@ Por defecto, este bundle viene con un repositorio de búsqueda de posts basado e
 
 Para crear un repositorio propio el primer paso sería implementar la interfaz SearchRepositoryInterface como se muestra en el siguiente ejemplo
 
+
     
-    class ElasticSearchRepository implements \Simettric\SimpleForumBundle\Repository\SearchRepositoryInterface{
+    class ElasticSearchRepository 
+          implements \Simettric\SimpleForumBundle\Repository\SearchRepositoryInterface{
     
         private $em;
         
