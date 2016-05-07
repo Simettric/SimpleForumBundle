@@ -9,15 +9,6 @@ Por defecto, el bundle funciona con unos templates que requieren disponer de un 
 Esto es completamente opcional, ya que estos templates se pueden sobreescribir a nivel de app.
 
 
-#### Este bundle depende de 
-
-* PHP5.6 o superior
-* KnpPaginatorBundle
-* cocur/slugify
-* Twig_Extensions_Extension_Text (para los templates base)
-* JQuery y Bootstrap (para los templates base)
-
-
 #### Instalación
 
 TODO, actualmente el bundle se encuentra en desarrollo.
