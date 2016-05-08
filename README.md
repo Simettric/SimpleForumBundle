@@ -52,7 +52,9 @@ La fecha prevista para disponer de una primera versión en packagist es el 26/05
 
 * Posibilidad de crear foros privados
 
-* Mejorar el permalink de respuesta, llevando al usuario a la página concreta donde se encuentra con un anchor en lugar de
+* Mejorar el permalink de respuesta, llevando al usuario a la página concreta donde se encuentra con un anchor 
+
+
 
 #### Configuración
 
