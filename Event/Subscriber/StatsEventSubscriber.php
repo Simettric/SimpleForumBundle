@@ -51,8 +51,8 @@ class StatsEventSubscriber implements  EventSubscriberInterface{
     {
 
         return array(
-            PostEvent::TYPE_CREATED => 'onPostNumberUpdates',
-            PostReplyEvent::TYPE_CREATED => 'onReplyNumberUpdates'
+            PostEvent::TYPE_CREATED => 'onPostCreatedOrDeleted',
+            PostReplyEvent::TYPE_CREATED => 'onReplyCreatedOrDeleted'
         );
 
 
@@ -61,7 +61,7 @@ class StatsEventSubscriber implements  EventSubscriberInterface{
     /**
      * @param PostEvent $event
      */
-    public function onPostNumberUpdates(PostEvent $event){
+    public function onPostCreatedOrDeleted(PostEvent $event){
 
 
         $forum = $event->getPost()->getForum();
@@ -85,7 +85,7 @@ class StatsEventSubscriber implements  EventSubscriberInterface{
     /**
      * @param PostReplyEvent $event
      */
-    public function onReplyNumberUpdates(PostReplyEvent $event){
+    public function onReplyCreatedOrDeleted(PostReplyEvent $event){
 
         $post  = $event->getReply()->getPost();
         $forum = $post->getForum();
