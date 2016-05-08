@@ -27,11 +27,10 @@ La fecha prevista para disponer de una primera versión en packagist es el 26/05
 
 * Detalle de respuesta, mostrando las respuestas a la misma
 
+* Se registra la IP de los usuarios tanto en Post como en Replies
 
 
 ##### TODO (En desarrollo)
-
-* Registrar IP de los usuarios
 
 * Posibilidad de editar posts por parte de los usuarios.
 
