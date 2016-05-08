@@ -95,6 +95,15 @@ class Post
      */
     private $replyCount;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_ip", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $clientIp;
+
     /**
      * Get id
      *
@@ -360,5 +369,29 @@ class Post
     public function getReplyCount()
     {
         return $this->replyCount;
+    }
+
+    /**
+     * Set clientIp
+     *
+     * @param string $clientIp
+     *
+     * @return Post
+     */
+    public function setClientIp($clientIp)
+    {
+        $this->clientIp = $clientIp;
+
+        return $this;
+    }
+
+    /**
+     * Get clientIp
+     *
+     * @return string
+     */
+    public function getClientIp()
+    {
+        return $this->clientIp;
     }
 }

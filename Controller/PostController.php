@@ -75,6 +75,7 @@ class PostController extends Controller{
         $item = new Post();
         $item->setForum($forum);
         $item->setUser($this->getUser());
+        $item->setClientIp($request->getClientIp());
 
         $form = $this->createForm(PostType::class, $item);
 
@@ -141,6 +142,7 @@ class PostController extends Controller{
         $reply = new PostReply();
         $reply->setUser($this->getUser());
         $reply->setPost($item);
+        $reply->setClientIp($request->getClientIp());
 
         $form = $this->createForm(PostReplyType::class, $reply);
 

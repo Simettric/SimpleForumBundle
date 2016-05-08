@@ -63,6 +63,14 @@ class PostReply
      */
     private $replies;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_ip", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $clientIp;
+
 
 
     /**
@@ -234,5 +242,29 @@ class PostReply
     public function getReplies()
     {
         return $this->replies;
+    }
+
+    /**
+     * Set clientIp
+     *
+     * @param string $clientIp
+     *
+     * @return PostReply
+     */
+    public function setClientIp($clientIp)
+    {
+        $this->clientIp = $clientIp;
+
+        return $this;
+    }
+
+    /**
+     * Get clientIp
+     *
+     * @return string
+     */
+    public function getClientIp()
+    {
+        return $this->clientIp;
     }
 }

@@ -43,6 +43,7 @@ class ReplyController extends Controller{
         $reply->setUser($this->getUser());
         $reply->setPost($item->getPost());
         $reply->setReply($item);
+        $reply->setClientIp($request->getClientIp());
 
         $form = $this->createForm(PostReplyType::class, $reply);
 
