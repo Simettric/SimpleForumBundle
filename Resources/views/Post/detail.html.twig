@@ -24,9 +24,18 @@
         {% else %}
             <h2><a href="{{ path("sim_forum_post", {id: item.id, slug: item.slug}) }}">{{ item.title|capitalize }}</a></h2>
 
-
         {% endif %}
 
+        {% if app.user %}
+        <div class="well">
+            <a class="btn btn-default" href="{{ path("sim_forum_post_subscribe", {id: item.id}) }}">
+                {{ is_subscribed_to_forum_post(item) ? "sim_forum_unsubscribe_to_this_post" : "sim_forum_subscribe_to_this_post"|trans }}
+            </a>
+            <a class="pull-right" href="{{ path("sim_forum_post_subscriptions") }}">
+                {{ "manage_subscriptions"|trans }}
+            </a>
+        </div>
+        {% endif %}
 
 
 

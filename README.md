@@ -29,6 +29,9 @@ La fecha prevista para disponer de una primera versión en packagist es el 26/05
 
 * Se registra la IP de los usuarios tanto en Post como en Replies
 
+* Suscribirse\Cancelar suscripción a un post para recibir notificaciones por correo cuando se publique una respuesta
+
+* EventSubscriber para envío de emails cuando un usuario responde a otro con sus correspondiente template en twig
 
 ##### TODO (En desarrollo)
 
@@ -39,10 +42,6 @@ La fecha prevista para disponer de una primera versión en packagist es el 26/05
 * Filtros de Twig para auto enlazar links, a otros usuarios y otras respuestas.
 
 * Editor WYSIWYG en templates base
-
-* Suscribirse\Cancelar suscripción a un post para recibir notificaciones por correo cuando se publique una respuesta
-
-* EventSubscriber para envío de emails con sus correspondientes templates en twig
 
 * Sistema básico de moderación de foros mediante estados de post: activo, baneado, eliminado
 
@@ -57,6 +56,13 @@ La fecha prevista para disponer de una primera versión en packagist es el 26/05
 
 
 #### Configuración
+
+Configura el bundle en app/config/config.yml
+
+    simettric_simple_forum:
+        mailing:
+          from_address: "noreply@tu_direccion.com"
+
 
 Implementa la interfaz SimpleForumBundle\Interfaces\UserInterface en tu entidad como puedes ver en el siguiente ejemplo
 

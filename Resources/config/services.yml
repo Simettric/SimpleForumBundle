@@ -1,5 +1,12 @@
 services:
 
+    sim_forum.twig_extension:
+        class: Simettric\SimpleForumBundle\Twig\ForumExtension
+        arguments: ["@security.token_storage", "@doctrine.orm.entity_manager"]
+        public: false
+        tags:
+            - { name: twig.extension }
+
     sim_forum.search_repository:
         class: Simettric\SimpleForumBundle\Repository\DoctrineSearchRepository
         arguments: ["@doctrine.orm.entity_manager"]
@@ -10,6 +17,11 @@ services:
         tags:
              - { name: kernel.event_subscriber }
 
+    sim_forum.user_reply_notification_subscriber:
+        class: Simettric\SimpleForumBundle\Event\Subscriber\NotifyOnReplySubscriber
+        arguments: ["@service_container"]
+        tags:
+             - { name: kernel.event_subscriber }
 
     sim_forum.slugify:
         class: Cocur\Slugify\Slugify

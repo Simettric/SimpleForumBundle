@@ -2,6 +2,8 @@
 
 namespace Simettric\SimpleForumBundle\Repository;
 use Simettric\SimpleForumBundle\Entity\Forum;
+use Simettric\SimpleForumBundle\Entity\Post;
+use Simettric\SimpleForumBundle\Interfaces\UserInterface;
 use Simettric\SimpleForumBundle\Traits\PaginationTrait;
 
 /**
@@ -24,6 +26,42 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
             ->where("f.id = :forum_id")
             ->setParameter("forum_id", $forum->getId());
 
+    }
+
+    /**
+     * @param UserInterface $user
+     * @return bool
+     */
+    function isSubscribed(UserInterface $user, Post $post){
+
+        return (bool) $this->createQueryBuilder("p")
+            ->select("COUNT(s)")
+            ->innerJoin("p.subscribers", "s")
+            ->where("s.id = :user_id and p.id = :post_id")
+            ->setParameter("user_id", $user->getId())
+            ->setParameter("post_id", $post->getId())
+            ->getQuery()->getSingleScalarResult();
+    }
+
+
+    function getSubscribersQB(Post $post){
+
+
+
+
+        return $this->createQueryBuilder("p")
+            ->select("s, p")
+            ->innerJoin("p.subscribers", "s")
+            ->where("p.id = :post_id")->setParameter("post_id", $post->getId())
+            ;
+    }
+
+    function getSubscribedToQB(UserInterface $user){
+
+        return $this->createQueryBuilder("p")
+            ->innerJoin("p.subscribers", "s")
+            ->where("s.id = :user_id")->setParameter("user_id", $user->getId())
+            ;
     }
 
 

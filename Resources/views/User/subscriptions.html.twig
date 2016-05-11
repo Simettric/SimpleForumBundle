@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain "sim_forum" %}
+
+{% block body %}
+
+    <div class="container">
+
+        <hr>
+
+        <ol class="breadcrumb">
+            <li><a href="{{ path("sim_forum_index") }}">{{ "forums_index_link"|trans }}</a></li>
+            <li class="active">{{ "sim_forum_manage_subscriptions"|trans }}</li>
+        </ol>
+
+        <h3>{{ "sim_forum_manage_subscriptions"|trans }}</h3>
+
+
+        <hr>
+
+
+
+
+        <table class="table table-striped">
+
+            <thead>
+            <tr>
+                <th>{{ "post_name"|trans }}</th>
+                <th>{{ "created_by"|trans }}</th>
+                <th>{{ "replies"|trans }}</th>
+                <th>{{ "last_update_by"|trans }}</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for item in pagination %}
+                <tr>
+                    <td>
+                        {{ item.forum.name|capitalize }} /
+                        <strong><a href="{{ path("sim_forum_post", {slug: item.slug, id: item.id}) }}">{{ item.title|capitalize }}</a></strong>
+                    </td>
+                    <td>
+                        <strong>{{ item.user.username }}</strong>
+                        <p><small>{{ item.created|date("d-m-Y H:i:s") }}</small></p>
+                    </td>
+                    <td>{{ item.replyCount|number_format }}</td>
+                    <td>
+                        {% if item.lastReply %}
+                            <strong>{{ item.lastReply.user.username }}</strong>
+                            <p><small>{{ item.lastReply.created|date("d-m-Y H:i:s") }}</small></p>
+                        {% else %}
+                            <strong>{{ item.user.username }}</strong>
+                            <p><small>{{ item.created|date("d-m-Y H:i:s") }}</small></p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn btn-default btn-block" href="{{ path("sim_forum_post_subscribe", {id: item.id}) }}">
+                            {{ "sim_forum_unsubscribe_to_this_post"|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">{{ "no_forum_subscriptions"|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+        <hr>
+        {{ knp_pagination_render(pagination) }}
+
+        <hr>
+    </div>
+
+
+{% endblock %}

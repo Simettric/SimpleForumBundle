@@ -1,0 +1,12 @@
+{% trans_default_domain "sim_forum" %}
+
+{% trans with {'%post_title%': reply.post.title, '%body%': reply.body, '%link%': url("sim_forum_post_subscribe", {id: reply.post.id})} %}
+
+New reply on post %post_title%:
+
+"%body%"
+
+Click in this link to unsubscribe
+%link%
+
+{% endtrans %}

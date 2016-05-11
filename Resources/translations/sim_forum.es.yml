@@ -1,34 +1,42 @@
 forums_index_link: Foros
-search: Buscar en los foros
-create_forum: Crear nuevo foro
-edit_forum: editar foro
-send_post: Crear un nuevo tema
-post_name: Nombre del tema
-created_by: Creado por
+search: 'Buscar en los foros'
+create_forum: 'Crear nuevo foro'
+edit_forum: 'editar foro'
+send_post: 'Crear un nuevo tema'
+post_name: 'Nombre del tema'
+created_by: 'Creado por'
 replies: Respuestas
-last_update_by: Última actualización por
-no_posts_published: Ningún tema publicado
+last_update_by: 'Última actualización por'
+no_posts_published: 'Ningún tema publicado'
 forum_index_title: Foros
-forum_name: Nombre del foro
+forum_name: 'Nombre del foro'
 posts: Temas
-updated_at: Última actualización
-no_forums_created: Ningún foro creado
-create_post: Crear tema
-create_post_in_forum: "Crear tema en el foro: %forum%"
+updated_at: 'Última actualización'
+no_forums_created: 'Ningún foro creado'
+create_post: 'Crear tema'
+create_post_in_forum: 'Crear tema en el foro: %forum%'
 post_replies: Respuestas
-there_is_no_replies: No hay respuestas todavía
-leave_a_reply: Dejar una respuesta
-form.reply.body: Escribe tu respuesta
+there_is_no_replies: 'No hay respuestas todavía'
+leave_a_reply: 'Dejar una respuesta'
+form.reply.body: 'Escribe tu respuesta'
 reply: Responder
-reply_detail: Detalle de la respuesta
-replies_to_this_reply: Comentarios en esta respuesta
-replying_to: Respondiendo al comentario de
+reply_detail: 'Detalle de la respuesta'
+replies_to_this_reply: 'Comentarios en esta respuesta'
+replying_to: 'Respondiendo al comentario de'
 form.name: Nombre
 form.title: Título
-form.slug: Nombre de enlace
-form.body: Escribe tu comentario
+form.slug: 'Nombre de enlace'
+form.body: 'Escribe tu comentario'
 form.description: Descripción
-reply_created: Respuesta enviada
-post_created: Has publicado un tema
-forum_updated: Foro actualizado
-forum_created: Foro creado
+reply_created: 'Respuesta enviada'
+post_created: 'Has publicado un tema'
+forum_updated: 'Foro actualizado'
+forum_created: 'Foro creado'
+"New reply on post %post_title%:\n\n\"%body%\"\n\nClick in this link to unsubscribe\n%link%": Nueva respuesta a %post_title%:\n\n\"%body%\"\n\nHaz click en este enlace para cancelar la suscripción\n%link%
+sim_forum_subscribe_to_this_post: Suscribirse a este post
+manage_subscriptions: Gestionar notificaciones
+sim_forum_manage_subscriptions: Gestionar notificaciones
+sim_forum_unsubscribe_to_this_post: Cancelar suscripción al post
+no_forum_subscriptions: No te has suscrito a ningún post
+post_subscription_created: Suscripción activada
+post_subscription_removed: Suscripción desactivada

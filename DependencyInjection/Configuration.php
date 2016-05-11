@@ -19,6 +19,15 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('simettric_simple_forum');
+        $rootNode
+            ->children()
+                ->arrayNode('mailing')
+                ->children()
+                    ->scalarNode('from_address')->isRequired(true)->end()
+                ->end()
+                ->end() // twitter
+            ->end()
+        ;
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

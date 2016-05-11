@@ -243,4 +243,28 @@ class PostReply
     {
         return $this->replies;
     }
+
+    /**
+     * Set clientIp
+     *
+     * @param string $clientIp
+     *
+     * @return PostReply
+     */
+    public function setClientIp($clientIp)
+    {
+        $this->clientIp = $clientIp;
+
+        return $this;
+    }
+
+    /**
+     * Get clientIp
+     *
+     * @return string
+     */
+    public function getClientIp()
+    {
+        return $this->clientIp;
+    }
 }

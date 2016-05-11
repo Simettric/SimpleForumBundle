@@ -14,8 +14,10 @@ use Simettric\SimpleForumBundle\Entity\Post;
 use Simettric\SimpleForumBundle\Entity\PostReply;
 use Simettric\SimpleForumBundle\Event\PostEvent;
 use Simettric\SimpleForumBundle\Event\PostReplyEvent;
+use Simettric\SimpleForumBundle\Event\PostSubscriptionEvent;
 use Simettric\SimpleForumBundle\Form\PostReplyType;
 use Simettric\SimpleForumBundle\Form\PostType;
+use Simettric\SimpleForumBundle\Interfaces\UserInterface;
 use Simettric\SimpleForumBundle\Repository\ForumRepository;
 use Simettric\SimpleForumBundle\Repository\PostReplyRepository;
 use Simettric\SimpleForumBundle\Repository\PostRepository;
@@ -121,6 +123,9 @@ class PostController extends Controller{
         ));
 
     }
+
+
+
 
 
     /**

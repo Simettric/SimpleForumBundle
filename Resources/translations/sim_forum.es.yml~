@@ -1,0 +1,34 @@
+forums_index_link: Foros
+search: Buscar en los foros
+create_forum: Crear nuevo foro
+edit_forum: editar foro
+send_post: Crear un nuevo tema
+post_name: Nombre del tema
+created_by: Creado por
+replies: Respuestas
+last_update_by: Última actualización por
+no_posts_published: Ningún tema publicado
+forum_index_title: Foros
+forum_name: Nombre del foro
+posts: Temas
+updated_at: Última actualización
+no_forums_created: Ningún foro creado
+create_post: Crear tema
+create_post_in_forum: "Crear tema en el foro: %forum%"
+post_replies: Respuestas
+there_is_no_replies: No hay respuestas todavía
+leave_a_reply: Dejar una respuesta
+form.reply.body: Escribe tu respuesta
+reply: Responder
+reply_detail: Detalle de la respuesta
+replies_to_this_reply: Comentarios en esta respuesta
+replying_to: Respondiendo al comentario de
+form.name: Nombre
+form.title: Título
+form.slug: Nombre de enlace
+form.body: Escribe tu comentario
+form.description: Descripción
+reply_created: Respuesta enviada
+post_created: Has publicado un tema
+forum_updated: Foro actualizado
+forum_created: Foro creado

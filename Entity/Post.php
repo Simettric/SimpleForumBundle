@@ -70,6 +70,13 @@ class Post
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="\Simettric\SimpleForumBundle\Interfaces\UserInterface")
+     * @ORM\JoinTable(name="forum_post_user")
+     */
+    protected $subscribers;
+
+
+    /**
      * @ORM\ManyToOne(targetEntity="Forum", inversedBy="posts")
      * @Assert\NotBlank()
      */
@@ -393,5 +400,39 @@ class Post
     public function getClientIp()
     {
         return $this->clientIp;
+    }
+
+    /**
+     * Add subscriber
+     *
+     * @param \AppBundle\Entity\User $subscriber
+     *
+     * @return Post
+     */
+    public function addSubscriber(\AppBundle\Entity\User $subscriber)
+    {
+        $this->subscribers[] = $subscriber;
+
+        return $this;
+    }
+
+    /**
+     * Remove subscriber
+     *
+     * @param \AppBundle\Entity\User $subscriber
+     */
+    public function removeSubscriber(\AppBundle\Entity\User $subscriber)
+    {
+        $this->subscribers->removeElement($subscriber);
+    }
+
+    /**
+     * Get subscribers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubscribers()
+    {
+        return $this->subscribers;
     }
 }
