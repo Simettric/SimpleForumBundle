@@ -1,0 +1,19 @@
+<tr>
+    <td>
+        <strong><a href="{{ path("sim_forum_post", {slug: item.slug, id: item.id}) }}">{{ item.title|capitalize }}</a></strong>
+    </td>
+    <td>
+        <strong>{{ item.user.username }}</strong>
+        <p><small>{{ item.created|date("d-m-Y H:i:s") }}</small></p>
+    </td>
+    <td>{{ item.replyCount|number_format }}</td>
+    <td>
+        {% if item.lastReply %}
+            <strong>{{ item.lastReply.user.username }}</strong>
+            <p><small>{{ item.lastReply.created|date("d-m-Y H:i:s") }}</small></p>
+        {% else %}
+            <strong>{{ item.user.username }}</strong>
+            <p><small>{{ item.created|date("d-m-Y H:i:s") }}</small></p>
+        {% endif %}
+    </td>
+</tr>

@@ -68,10 +68,11 @@ class DoctrineSearchRepository implements SearchRepositoryInterface{
         $offset = ($page*$limit)-$limit;
         if($offset<0) $offset = 0;
 
-        $this->total = $this->em->createQueryBuilder()
+        $this->total = (int) $this->em->createQueryBuilder()
             ->select("COUNT(p.id)")->from("SimettricSimpleForumBundle:Post", "p")
             ->where("p.title LIKE :search")->setParameter("search", '%'.$search_pattern.'%')
             ->getQuery()->getSingleScalarResult();
+
 
         if($this->total){
 

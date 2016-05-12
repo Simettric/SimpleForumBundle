@@ -46,12 +46,12 @@ class ForumExtension extends \Twig_Extension
 
     public function isSubscribedToPost(Post $post)
     {
-        static $subscribed;
+        //static $subscribed;
 
-        if($subscribed===null && $this->user){
+        //if($subscribed===null && $this->user){
 
             $subscribed = $this->postRepo->isSubscribed($this->user, $post);
-        }
+        //}
 
         return $subscribed;
     }

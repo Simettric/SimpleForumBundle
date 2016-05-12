@@ -37,6 +37,10 @@ class PostController extends Controller{
     public function searchAction(Request $request){
 
 
+        if(!$request->get("query")){
+            return $this->redirect($request->headers->get("referer", $this->generateUrl("sim_forum_index")));
+        }
+
         $event = new PaginationEvent();
         $this->get("event_dispatcher")->dispatch("knp_pager.pagination", $event);
 
@@ -49,7 +53,7 @@ class PostController extends Controller{
          * @var $searchRepository \Simettric\SimpleForumBundle\Interfaces\SearchRepositoryInterface
          */
         $searchRepository = $this->get("sim_forum.search_repository");
-        $searchRepository->search($request->get("search"), $request->get("page",1));
+        $searchRepository->search($request->get("query"), $request->get("page",1));
 
         $pagination->setCurrentPageNumber($searchRepository->getPage());
         $pagination->setItemNumberPerPage($searchRepository->getLimit());
@@ -57,6 +61,7 @@ class PostController extends Controller{
         $pagination->setTotalItemCount($searchRepository->getTotalResults());
         $pagination->setPaginatorOptions(array());
         $pagination->setCustomParameters(array());
+
 
 
         return $this->render('SimettricSimpleForumBundle:Post:search.html.twig', array(

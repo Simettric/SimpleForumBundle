@@ -2,7 +2,7 @@ forums_index_link: Foros
 search: 'Buscar en los foros'
 create_forum: 'Crear nuevo foro'
 edit_forum: 'editar foro'
-send_post: 'Crear un nuevo tema'
+send_post: 'Publicar un tema nuevo'
 post_name: 'Nombre del tema'
 created_by: 'Creado por'
 replies: Respuestas
@@ -13,7 +13,7 @@ forum_name: 'Nombre del foro'
 posts: Temas
 updated_at: 'Última actualización'
 no_forums_created: 'Ningún foro creado'
-create_post: 'Crear tema'
+create_post: 'Publicar un tema nuevo'
 create_post_in_forum: 'Crear tema en el foro: %forum%'
 post_replies: Respuestas
 there_is_no_replies: 'No hay respuestas todavía'
