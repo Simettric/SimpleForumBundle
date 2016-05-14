@@ -65,9 +65,19 @@
 
 {% block javascripts %}
 
-
-
+    <script type="text/javascript" src="{{ asset("bundles/simettricsimpleforum/js/vendor/bower_components/trumbowyg/dist/trumbowyg.min.js") }}"></script>
     <script type="text/javascript" src="{{ asset("bundles/simettricsimpleforum/js/post.js") }}"></script>
 
+{% endblock %}
+
+{% block stylesheets %}
+
+    {% stylesheets
+    'bundles/simettricsimpleforum/js/vendor/bower_components/trumbowyg/dist/ui/trumbowyg.min.css'
+
+    'bundles/app/css/forum.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 
 {% endblock %}
