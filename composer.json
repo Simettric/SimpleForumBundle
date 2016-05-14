@@ -11,10 +11,7 @@
     "autoload": {
         "psr-4": {
             "Simettric\\SimpleForumBundle\\": ""
-        },
-        "files": [
-            "app/AppKernel.php"
-        ]
+        }
     },
     "require": {
         "php": ">=5.5.9",
