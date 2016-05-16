@@ -32,6 +32,7 @@ reply_created: 'Respuesta enviada'
 post_created: 'Has publicado un tema'
 forum_updated: 'Foro actualizado'
 forum_created: 'Foro creado'
+must_login_to_reply: "Debes iniciar sesión para dejar una respuesta"
 "New reply on post %post_title%:\n\n\"%body%\"\n\nClick in this link to unsubscribe\n%link%": Nueva respuesta a %post_title%:\n\n\"%body%\"\n\nHaz click en este enlace para cancelar la suscripción\n%link%
 sim_forum_subscribe_to_this_post: Suscribirse a este post
 manage_subscriptions: Gestionar notificaciones

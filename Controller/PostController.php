@@ -69,65 +69,7 @@ class PostController extends Controller{
         ));
     }
 
-    /**
-     * @Route("/create-in-{forum_id}", name="sim_forum_post_create")
-     */
-    public function createAction($forum_id, Request $request)
-    {
 
-        if(!$forum = $this->getForumRepository()->find($forum_id)){
-            throw $this->createNotFoundException();
-        }
-
-        $item = new Post();
-        $item->setForum($forum);
-        $item->setUser($this->getUser());
-        $item->setClientIp($request->getClientIp());
-
-        $form = $this->createForm(PostType::class, $item);
-
-
-
-        if($request->getMethod() == Request::METHOD_POST){
-
-            $form->handleRequest($request);
-            if($form->isValid()){
-
-                $item->setCreated(new \DateTime());
-                $item->setSlug($this->get("sim_forum.slugify")->slugify($item->getTitle()));
-                $item->setUpdated(new \DateTime());
-
-
-
-                $this->getDoctrine()->getManager()->persist($item);
-
-                $item->getForum()->setUpdated(new \DateTime());
-
-                $this->getDoctrine()->getManager()->persist($item->getForum());
-
-                $this->getDoctrine()->getManager()->flush();
-
-                $this->get("event_dispatcher")->dispatch(PostEvent::TYPE_CREATED, new PostEvent($item));
-
-
-                $this->addFlash("success", $this->get("translator")->trans("post_created", array(), "sim_forum"));
-
-                return $this->redirect(
-                            $this->generateUrl("sim_forum_post",
-                                               ["slug"=>$item->getSlug(), "id"=>$item->getId()])
-                );
-
-            }
-
-        }
-
-        return $this->render('SimettricSimpleForumBundle:Post:create.html.twig', array(
-            "forum" => $forum,
-            "item" => $item,
-            "form"  => $form->createView()
-        ));
-
-    }
 
 
 

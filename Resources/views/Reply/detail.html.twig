@@ -42,13 +42,17 @@
 
         <hr>
         <h4 id="reply">{{ "leave_a_reply"|trans }}</h4>
-        <form id="reply-form" action="{{ path("sim_forum_post_reply_to_reply", {reply_id: item.id, id: item.post.id, slug: item.post.slug}) }}" method="post">
+        {% if is_granted("ROLE_USER") %}
+            <form id="reply-form" action="{{ path("sim_forum_post_reply_to_reply", {reply_id: item.id, id: item.post.id, slug: item.post.slug}) }}" method="post">
 
-            <p>{{ form_row(form.body, {label: 'form.reply.body'|trans ,attr: {class: "form-control"}}) }}</p>
-            {{ form_rest(form) }}
-            <button class="btn btn-primary">{{ "reply"|trans }}</button>
+                <p>{{ form_row(form.body, {label: 'form.reply.body'|trans ,attr: {class: "form-control"}}) }}</p>
+                {{ form_rest(form) }}
+                <button class="btn btn-primary">{{ "reply"|trans }}</button>
 
-        </form>
+            </form>
+        {% else %}
+            <p class="alert alert-notice">{{ "must_login_to_reply"|trans }}</p>
+        {% endif %}
 
 
         <hr>
