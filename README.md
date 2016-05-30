@@ -13,7 +13,7 @@ Esto es completamente opcional, ya que estos templates se pueden sobreescribir a
 
 TODO, actualmente el bundle se encuentra en desarrollo.
 
-La fecha prevista para disponer de una primera versión en packagist es el 26/05/2016 
+La fecha prevista para disponer de una primera versión en packagist es el 15/06/2016 
 
 #### Funcionalidad disponible
 
